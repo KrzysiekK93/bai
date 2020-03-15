@@ -13,3 +13,18 @@ ul. Długa 15
 30-781 Kraków
 POLAND
 */
+
+const notFormated = 
+`${title} ${name} ${surname}
+ul. ${street}
+${zip} ${city}
+${country}`
+
+const formated = 
+`${title} ${name} ${surname}
+ul. ${street}
+${zip} ${city}
+${country.toUpperCase()}`
+
+console.log(notFormated);
+console.log(formated);
