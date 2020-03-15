@@ -6,8 +6,30 @@
 	</head>
 	<body>
 		<script>
-			// a JavaScript code here ...
-			
+			createTableFn = () => {
+				const body = document.querySelector('body');
+				const table = document.createElement("table");
+				table.setAttribute('border', '1');
+				table.setAttribute('width', '400');
+				let fill = 1
+
+				const tbody = document.createElement('tbody');
+
+				for (var i = 0; i < 2; i++) {
+					let row = document.createElement('tr');
+					for (var j = 0; j < 2; j++) {
+						var cell = document.createElement('td');
+						cell.appendChild(document.createTextNode(fill++))
+						row.appendChild(cell)
+					}
+					tbody.appendChild(row);
+				}
+
+				table.appendChild(tbody);
+				body.appendChild(table)
+			}
+
+			createTableFn();
 		</script>
 	</body>
 </html>

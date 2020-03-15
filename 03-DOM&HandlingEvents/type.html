@@ -23,8 +23,12 @@
 		<textarea rows="15" cols="50"></textarea><br>
 		
 		<script>
-			// a JavaScript code here ...
-			
+			setTimeout(() => {
+				const textarea = document.querySelector('textarea');
+				const score = document.createElement("div");
+				score.innerText = `You typed ${textarea.value.length} chars`;
+				document.querySelector("body").appendChild(score);
+			}, 30000);
 		</script>
 		
 	</body>

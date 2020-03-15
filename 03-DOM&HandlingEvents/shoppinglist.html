@@ -4,6 +4,7 @@
 <head>
     <title>Shopping List</title>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -20,7 +21,20 @@
     </ol>
 
     <script>
-    	// a JavaScript code here ...
+        const list = document.querySelector('ol');
+        const button = document.querySelector('button');
+        const input = document.querySelector('input');
+
+        button.addEventListener("click", () => {
+            const text = input.value;
+            const listItem = document.createElement("li");
+            listItem.innerText = text;
+            list.appendChild(listItem);
+        })
+
+        $("ol").dblclick(function(e) {
+            e.target.remove()
+        });
 
     </script>
 </body>

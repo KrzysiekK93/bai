@@ -15,9 +15,16 @@
 	</form>
 
 	<script>
-		// a JavaScript code here ...
 		var university = "Cracow University of Economics";
 		var address = "Rakowicka 27, Krakow, POLAND";
+
+		const paragraphs = document.querySelectorAll('input');
+		const button = document.querySelector('button');
+
+		button.addEventListener('click', () => {
+			paragraphs[0].value = university;
+			paragraphs[1].value = address;
+		})
 
 	</script>
 </body>

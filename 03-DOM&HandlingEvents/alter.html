@@ -20,8 +20,37 @@
 		and psychedelic music.</p>
 		
 		<script>
-			// a JavaScript code here ...
-			
+			const h1 = document.querySelector('h1');
+			const h3 = document.querySelector('h3');
+			const paragraphs = document.querySelectorAll('p');
+
+			h1.addEventListener('click', function() {
+				this.innerText = `${this.innerText} (Part 2)`
+			})
+
+			h3.addEventListener('click', () => {
+				paragraphs[1].style.visibility = "visible";
+			})
+
+			paragraphs[0].addEventListener('click', function() {
+				this.style.fontStyle = "italic";
+			})
+
+			paragraphs[0].addEventListener('copy', () => {
+				alert('Copy forbidden')
+			});
+
+			paragraphs[1].addEventListener('click', () => {
+				const img = document.createElement("img");
+				img.setAttribute("src", "https://upload.wikimedia.org/wikipedia/en/d/d6/Pink_Floyd_-_all_members.jpg")
+				document.querySelector('body').appendChild(img);
+			});
+
+			document.addEventListener("dblclick", function() {
+				this.querySelector('body').style.background = "yellow";
+			});
+
+
 		</script>
 	</body>
 </html>
