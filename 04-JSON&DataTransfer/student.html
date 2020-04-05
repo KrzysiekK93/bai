@@ -7,11 +7,21 @@
 	<body>
 		<h1>Student</h1>
 		<p>Open a console and then click the button</p>
-		<input type="button" value="Display student's data">
+		<input type="button" value="Display student's data" onclick="fetchData()">
 		<p id="personalData"></p>
 
 		<script>
-
+			function fetchData(){
+				const xhr = new XMLHttpRequest();
+				xhr.open('GET', 'data.json', false);
+				xhr.onreadystatechange = function() {
+					if (this.readyState === 4 && this.status === 200) {
+						let item = JSON.parse(xhr.responseText)
+						document.getElementById("personalData").innerHTML = `${item.name} ${item.surname}`;
+					}
+				};
+				xhr.send();
+			}
 		</script>
 
 	</body>
