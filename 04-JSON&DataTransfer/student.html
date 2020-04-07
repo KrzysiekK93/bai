@@ -13,13 +13,13 @@
 		<script>
 			function fetchData(){
 				const xhr = new XMLHttpRequest();
-				xhr.open('GET', 'data.json', false);
 				xhr.onreadystatechange = function() {
 					if (this.readyState === 4 && this.status === 200) {
-						let item = JSON.parse(xhr.responseText)
+						let item = JSON.parse(xhr.response)[0];
 						document.getElementById("personalData").innerHTML = `${item.name} ${item.surname}`;
 					}
 				};
+				xhr.open('GET', 'https://krzysiekk93.github.io/bai/04-JSON&DataTransfer/data.json');
 				xhr.send();
 			}
 		</script>

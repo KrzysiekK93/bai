@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chart</title>
+        <meta charset="UTF-8">
+        <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+    </head>
+    <style>
+        body {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+    </style>
+	<body>
+		<h1>Charts</h1>
+        <canvas id="myChart" width="400" height="400"></canvas>
+        
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+		<script>
+			function fetchData(){
+				const xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function() {
+					if (this.readyState === 4 && this.status === 200) {
+                        const data = JSON.parse(xhr.response);
+                        const GoldPrice = data.map(item => {
+                            return item.cena
+                        });
+
+                        const GoldLabel = data.map(item => {
+                            return item.data
+                        });
+
+                        var ctx = document.getElementById('myChart').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: GoldLabel,
+                                datasets: [{
+                                    label: '# of Gold Prices',
+                                    data: GoldPrice,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+					}
+				};
+				xhr.open('GET', 'http://api.nbp.pl/api/cenyzlota/last/15?format=json');
+				xhr.send();
+            }
+
+            fetchData();
+        </script>
+	</body>
+</html>

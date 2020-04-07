@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Data table</title>
+        <meta charset="UTF-8">
+
+        <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+	</head>
+	<body>
+		<h1>People</h1>
+        <table id="dataTable"></table>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+		<script>
+			function fetchData(){
+				const xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function() {
+					if (this.readyState === 4 && this.status === 200) {
+						const arr = JSON.parse(xhr.response);
+                        $(document).ready(function() {
+                            $('#dataTable').DataTable( {
+                                "data": arr,
+                                "columns": [
+                                    { "data": "name" },
+                                    { "data": "surname" },
+                                    { "data": "age" },
+                                    { "data": "country" },
+                                    { "data": "email" }
+                                ]
+                            } );
+                        } );
+					}
+				};
+				xhr.open('GET', 'https://krzysiekk93.github.io/bai/04-JSON&DataTransfer/people.json');
+				xhr.send();
+			}
+            fetchData();
+		</script>
+	</body>
+</html>
