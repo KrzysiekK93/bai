@@ -2,7 +2,21 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
 </head>
+
+<style>
+  .wrapper {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+</style>
+<div id="app">
+  <div class="wrapper">
+    <canvas id="language" width="400" height="400"></canvas>
+  </div>
+</div>
 <body>
   <script>
     var app = new Vue({
@@ -29,8 +43,46 @@
             language: 'Php',
             popularity: 7.37
           }
-        ] 
+        ]
+      },  
+      computed : {
+        lang() {
+          return this.films.map(item => {
+            return item.language
+          })
+        },
+        popularity() {
+          return this.films.map(item => {
+            return item.popularity
+          })
+        },
+        createCharts() {
+          const ctx =  document.getElementById('language').getContext('2d')
+          const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: this.lang,
+                datasets: [{
+                    label: '# of language popularity',
+                    data: this.popularity,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        })
       }
+    }, 
+    mounted() {
+      this.createCharts;
+    }
     });
   </script>
 </body>

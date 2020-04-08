@@ -3,7 +3,25 @@
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+<style>
+  p{
+    margin: 0;
+  }
+  .header{
+    margin-bottom: 10px;
+  }
+</style>
 <body>
+  <div id="app">
+    <p class="header"><strong>EMPLOYEE RECORD</strong></p>
+    <p>Name 1: {{name1}}</p>
+    <p v-if="name2">Name 2: {{name2}}</p>
+    <p>Surname: {{surname}}</p>
+    <p v-if="nationality === 'Polish'">Pesel: {{pesel}}</p>
+    <p v-if="nationality !== 'Polish'">Narodowość: {{nationality}}</p>
+    <p>Address: {{address}}</p>
+  </div>
+
   <script>
     var app = new Vue({
       el: '#app',
@@ -14,7 +32,8 @@
         foreigner: false,
         nationality: 'Polish',
         pesel: '92021708229',
-        address: 'ul. Szeroka 3, Kraków',
+        address: 'ul. Szeroka 3, Kraków'
+      }
     });
   </script>
 

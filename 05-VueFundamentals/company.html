@@ -3,7 +3,33 @@
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+<style>
+  .box{
+    border: 1px solid black;
+    max-width: 600px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+  }
+
+  p{
+    margin: 0;
+  }
+</style>
 <body>
+
+  <div id="app">
+    <div class="box">
+      <div><strong>{{ company.toUpperCase() }}</strong></div>
+       <div>{{ address }}</div>
+       <div>{{ postcode + " " + city }}</div>
+       <div>tel. {{landline + ", " + mobile }}</div>
+       <a :href="web">{{ web }}</a>
+    </div>
+  </div> 
   <script>
     var app = new Vue({
       el: '#app',

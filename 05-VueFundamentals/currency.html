@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+  table {
+    border-collapse: collapse;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  th {
+    font-weight: 700;
+  }
+  td, th{
+    border: 1px solid black;
+    padding: 5px;
+    text-align: left;
+    min-width: 200px;
+  }
+</style>
+<body>
+  <div id="app">
+    <table>
+        <thead>
+          <tr>
+            <th>Currency</th>
+            <th>Code</th>
+            <th>Mid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in rates" :key="index">
+            <td>{{item.currency}}</td>
+            <td>{{item.code}}</td>
+            <td>{{item.mid}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        rates: []
+      },
+      methods: {
+        fetchData() {
+            const xhr = new XMLHttpRequest();
+            const that = this;
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    const arr = JSON.parse(xhr.response)[0].rates;
+                    that.rates.push(...arr);
+                }
+            };
+            xhr.open('GET', 'http://api.nbp.pl/api/exchangerates/tables/A');
+            xhr.send();
+        },
+      },
+      beforeMount() {
+        this.fetchData();
+      }
+    });
+  </script>
+
+</body>
+</html>
