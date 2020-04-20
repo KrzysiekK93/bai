@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <api></api>
+    </div>
+
+    <script>
+        Vue.component('api', {
+            data() {
+                return {
+                    data: [],
+                }
+            },
+            methods: {
+                renderData() {
+                    const xhr = new XMLHttpRequest();
+                    const that = this;
+                    xhr.onreadystatechange = function() {
+                        if (this.readyState === 4 && this.status === 200) {
+                            const arr = JSON.parse(xhr.response);
+                            that.data.push(...arr.items);
+                        }
+                    };
+                    xhr.open('GET', 'https://chroniclingamerica.loc.gov/search/titles/results/?terms=michigan&format=json&page=5');
+                    xhr.send();
+                },
+            },
+            mounted(){
+                this.renderData()
+            },
+            template : `
+                <ol>
+                    <li v-for="item in data">
+                        {{ item.place_of_publication }}
+                    </li>
+                </ol>
+            `
+        })
+
+        var app = new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+</html>

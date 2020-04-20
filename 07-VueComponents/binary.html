@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <binary v-bind:value="8"></binary>
+        <binary v-bind:value="170"></binary>
+        <binary v-bind:value="204"></binary>
+        <binary v-bind:value="3855"></binary>
+    </div>
+
+    <script>
+        Vue.component('binary', {
+            props: {
+                value: Number
+            },
+            methods: {
+                convert: function() {
+                    return (this.value).toString(2)
+                }
+            },
+            template : `
+            <div>
+                {{value}}(10) = {{convert()}}(2)
+            </div>
+            `
+        })
+
+        var app = new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+</html>

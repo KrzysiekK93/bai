@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <shawshank></shawshank>
+        <godfather></godfather>
+        <lord></lord>
+    </div>
+
+  <script>
+    Vue.component('shawshank', {
+        data() {
+        return {
+            title: 'The Shawshank Redemption',
+            director: 'Frank Darabont',
+            productionYear: 1994
+        }
+        },
+        template : `
+        <div>
+            <h1>{{title}}</h1>
+            <h2>{{director}}</h2>
+            <p>{{productionYear}}</p>
+        </div>
+        `
+    })
+
+    Vue.component('godfather', {
+        data() {
+        return {
+            title: 'The Godfather',
+            director: 'Francis Ford Coppola',
+            productionYear: 1972
+        }
+        },
+        template : `
+        <div>
+            <h1>{{title}}</h1>
+            <h2>{{director}}</h2>
+            <p>{{productionYear}}</p>
+        </div>
+        `
+    })
+
+    Vue.component('lord', {
+        data() {
+        return {
+            title: 'The Lord of the Rings: The Return of the King',
+            director: 'Peter Jackson',
+            productionYear: 2003
+        }
+        },
+        template : `
+        <div>
+            <h1>{{title}}</h1>
+            <h2>{{director}}</h2>
+            <p>{{productionYear}}</p>
+        </div>
+        `
+    })
+
+
+    var app = new Vue({
+        el: '#app'
+    });
+  </script>
+</body>
+</html>
