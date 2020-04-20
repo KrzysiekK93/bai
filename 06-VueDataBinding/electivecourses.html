@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div>
+        <input type="checkbox" id="bai" name="bai" v-model="bai">
+        <label for="bai">Bogate aplikacje internetowe</label>
+    </div>
+    <div>
+        <input type="checkbox" id="mihe" name="mihe" v-model="mihe">
+        <label for="mihe">Marketing i handel elektroniczny</label>
+    </div>
+    <div>
+        <input type="checkbox" id="mop" name="mop" v-model="mop">
+        <label for="mop">Metody optymalizacji procesów</label>
+    </div>
+    <div>
+        <input type="checkbox" id="pk" name="pk" v-model="pk">
+        <label for="pk">Programowanie kreatywne</label>
+    </div>
+    <div>
+        <input type="checkbox" id="jo" name="jo" v-model="jo">
+        <label for="jo">Język obcy</label>
+    </div>
+
+    <p>Zaznaczyles {{checked}} elementow</p>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        bai: false,
+        mihe: false,
+        mop: false,
+        pk: false,
+        jo: false
+      },
+      computed: {
+        checked: function() {
+            var vm = this;
+            let counter = 0;
+            const checkedArr = [ vm.bai, vm.mihe, vm.mop, vm.pk, vm.jo]
+            checkedArr.map(item => {
+                if (item === true) {
+                    counter ++
+                }
+            })
+            return counter
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

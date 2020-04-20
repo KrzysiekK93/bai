@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>CV</h1>
+    <div>Name: <input type="text" v-model="name" /></div>
+    <div>Surname: <input type="text" v-model="surname" /></div>
+    <div>Age: <input type="number" v-model="age" /></div>
+    <div>Gender: 
+        <select v-model="gender">
+            <option disabled value="">Please select one</option>
+            <option>Man</option>
+            <option>Woman</option>
+        </select>
+    </div>
+    <div>Education: 
+        <input type="radio" id="none" value="none" v-model="education">
+        <label for="none">None</label>
+        <input type="radio" id="primary" value="primary" v-model="education">
+        <label for="primary">Primary education</label>
+        <input type="radio" id="secondary" value="secondary" v-model="education">
+        <label for="secondary">Secondary education</label>
+        <input type="radio" id="higher" value="higher" v-model="education">
+        <label for="higher">Higher education</label>
+    </div>
+    <div>Skills: 
+        <input type="checkbox" id="computer" value="computer" v-model="skills">
+        <label for="computer">Computer skills</label>
+        <input type="checkbox" id="driving" value="driving" v-model="skills">
+        <label for="driving">Driving license</label>
+        <input type="checkbox" id="creativity" value="creativity" v-model="skills">
+        <label for="creativity">Creativity</label>
+        <input type="checkbox" id="group" value="group" v-model="skills">
+        <label for="group">Group work</label>
+    </div>
+    <button  @click="save()">Save to Local Storage</button>
+    <button  @click="load()">Get data from Local Storage</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: '',
+        surname: '',
+        age: '',
+        gender: '',
+        education: '',
+        skills: [],
+        form: {}
+      },
+      methods: {
+        save: function() {
+            this.form.name = this.name;
+            this.form.surname = this.surname;
+            this.form.age = this.age;
+            this.form.gender = this.gender;
+            this.form.education = this.education;
+            this.form.skills = this.skills;
+            localStorage.setItem('form', JSON.stringify(this.form));
+        },
+        load: function() {
+            const dataLoaded = JSON.parse(localStorage.getItem("form"));
+        }
+      }
+    });
+  </script>
+</body>
+</html>

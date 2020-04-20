@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div>Name: <input type="text" v-model="name" /></div>  
+    <div>Surname: <input type="text" v-model="surname" /></div>  
+    <div>Title: <input type="text" v-model="title" /></div>
+    <button type="button" v-on:click="handleClick({name, surname, title})">Zapisz</button>  
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: "",
+        surname: "",
+        title: ""
+      },
+      methods: {
+        handleClick: function(value) {
+          console.log("name: ", value.name);
+          console.log("surname: ", value.surname);
+          console.log("title: ", value.title);
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

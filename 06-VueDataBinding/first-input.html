@@ -6,13 +6,20 @@
 <body>
   <div id="app">
     <span>Your name:</span>
-    <input type="text" v-model="name">  
+    <input type="text" v-model.lazy="name">  
   </div>
   <script>
     var app = new Vue({
       el: '#app',
-      data: {
-        name: ''
+      data: function(){
+        return {
+          name: ''
+        }
+      },
+      watch: {
+        name:function(value){
+          console.log("name", value)
+        }
       }
     });
   </script>
